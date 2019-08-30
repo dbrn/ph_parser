@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup as Soup
 # let's initialize our argument parser
 parser = argparse.ArgumentParser()
 parser.add_argument("keywords", help='The keywords you want to look for between "" (eg. "teen blonde")')
-parser.add_argument("pages", help="The range of pages you want to scrap. (eg. 1-20)", default=1)
+parser.add_argument("pages", help="The range of pages you want to scrap. (eg. 1-20)")
 args = parser.parse_args()
 
 # let's transform the page-range into a tuple
@@ -52,8 +52,8 @@ for page_num in range(page_range[0], page_range[1] + 1):
             file.write("url,description,uploader\n")
         for video_block in video_blocks:
             try:
-                file.write(str("http://www.pornhub.com" + video_block.span.a["href"]).title().strip() + ",")
-                file.write(str(video_block.span.a.text).replace(",", " ").strip() + ",")
+                file.write(str("http://www.pornhub.com" + video_block.span.a["href"]).strip() + ",")
+                file.write(str(video_block.span.a.text).replace(",", " ").title().strip() + ",")
                 file.write(str(video_block.div.div.a.text).strip() + "\n")
 
             # in case of error skip this line by creating a new one
